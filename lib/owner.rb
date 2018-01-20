@@ -11,7 +11,6 @@ class Owner
     @species = species
     @pets = {fishes: [], cats: [], dogs: []}
     @@owners << self
-
   end
 
   def self.all
@@ -44,7 +43,6 @@ class Owner
 
   def walk_dogs
     self.pets[:dogs].each {|dog| dog.mood = "happy"}
-
   end
 
   def play_with_cats
@@ -56,18 +54,23 @@ class Owner
   end
 
   def sell_pets
-    self.pets.values.each do |pet_type|
-      pet_type.each do |pet|
-        pet.mood = "nervous"
-      end
-      pet_type.clear
-    end
+    #self.pets.values.each do |pet_type|
+    #  pet_type.each do |pet|
+    #    pet.mood = "nervous"
+    #  end
+    #  pet_type.clear
+    #end
+    pets.each do |species, animals|
+      binding.pry
+     animals.each do |animal|
+       animal.mood = "nervous"
+     end
+     animals.clear
+   end
   end
 
   def list_pets
-    count = self.pets.values.collect {|pet_type| pet_type.count}
-    "I have #{count[0]} fish, #{count[2]} dog(s), and #{count[1]} cat(s)."
-
+    "I have #{pets[:fishes].count} fish, #{pets[:dogs].count} dog(s), and #{pets[:cats].count} cat(s)."
   end
 
 end
