@@ -5,17 +5,17 @@ class Owner
   attr_accessor :pets, :name
   attr_reader :species
 
-  @@all = [] # keeps track of all owners
+  @@owners = [] # keeps track of all owners
 
   def initialize(species)
     @species = species
     @pets = {fishes: [], cats: [], dogs: []}
-    @@all << self
+    @@owners << self
 
   end
 
   def self.all
-    @@all
+    @@owners
   end
 
   def self.count
